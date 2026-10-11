@@ -33,11 +33,12 @@ class GetEnvOrDefaultSnippetTest {
   /**
    * Tests that an existing environment variable is returned.
    */
-  @Test
-  void testPresentEnvironmentVariable() {
-    assertEquals(System.getenv("PATH"), GetEnvOrDefaultSnippet.getEnvOrDefault("PATH", "fallback"));
-  }
-
+     @Test
+      void testPresentEnvironmentVariable() {
+        var env = System.getenv();
+        var key = env.keySet().iterator().next();
+       assertEquals(env.get(key), GetEnvOrDefaultSnippet.getEnvOrDefault(key, "fallback"));
+      }
   /**
    * Tests that the default is returned for a missing environment variable.
    */

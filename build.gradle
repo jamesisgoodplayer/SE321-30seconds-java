@@ -1,9 +1,8 @@
 plugins {
-    id "org.sonarqube" version "6.1.0.5360"
+    id "org.sonarqube" version "7.3.1.8318"
     id 'org.cadixdev.licenser' version '0.6.1'
     id 'jacoco'
 }
-
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
@@ -27,20 +26,21 @@ checkstyle {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "iluwatar_30-seconds-of-java"
-        property "sonar.organization", "iluwatar"
-        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.projectKey", "30-seconds-of-java"
+        property "sonar.projectKey","30-seconds-of-java"
+        property "sonar.host.url", "http://localhost:9000"
         property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
-tasks.named('sonarqube') {
+tasks.named('sonar') {
     dependsOn test
 }
 
 jacocoTestReport {
     reports {
         xml.required = true
+        html.required = true
     }
 }
 
