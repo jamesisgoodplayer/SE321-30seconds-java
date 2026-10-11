@@ -69,10 +69,12 @@ public class ZipDirectorySnippet {
     if (fileToZip.isDirectory()) {
       if (fileName.endsWith("/")) {
         zipOut.putNextEntry(new ZipEntry(fileName)); // To be zipped next
+        zipOut.write(new byte[0]); // Directory entries carry no content
         zipOut.closeEntry();
       } else {
         // Add the "/" mark explicitly to preserve structure while unzipping action is performed
         zipOut.putNextEntry(new ZipEntry(fileName + "/"));
+        zipOut.write(new byte[0]); // Directory entries carry no content
         zipOut.closeEntry();
       }
       var children = fileToZip.listFiles();

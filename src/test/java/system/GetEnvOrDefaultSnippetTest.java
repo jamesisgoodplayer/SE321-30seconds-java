@@ -33,18 +33,19 @@ class GetEnvOrDefaultSnippetTest {
   /**
    * Tests that an existing environment variable is returned.
    */
-     @Test
-      void testPresentEnvironmentVariable() {
-        var env = System.getenv();
-        var key = env.keySet().iterator().next();
-       assertEquals(env.get(key), GetEnvOrDefaultSnippet.getEnvOrDefault(key, "fallback"));
-      }
+  @Test
+  void testPresentEnvironmentVariable() {
+    var env = System.getenv();
+    var key = env.keySet().iterator().next();
+    assertEquals(env.get(key), GetEnvOrDefaultSnippet.getEnvOrDefault(key, "fallback"));
+  }
+
   /**
    * Tests that the default is returned for a missing environment variable.
    */
   @Test
   void testMissingEnvironmentVariable() {
     assertEquals("fallback", GetEnvOrDefaultSnippet.getEnvOrDefault(
-            "THIRTY_SECONDS_OF_JAVA_MISSING_ENV_VAR", "fallback"));
+        "THIRTY_SECONDS_OF_JAVA_MISSING_ENV_VAR", "fallback"));
   }
 }
