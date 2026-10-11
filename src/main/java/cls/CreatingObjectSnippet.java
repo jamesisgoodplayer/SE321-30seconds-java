@@ -31,6 +31,8 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class CreatingObjectSnippet {
 
+  private CreatingObjectSnippet() {}
+
   /**
    * Create object using reflection.
    *

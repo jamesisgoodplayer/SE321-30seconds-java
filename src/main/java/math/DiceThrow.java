@@ -31,6 +31,8 @@ import java.util.Random;
  */
 public class DiceThrow {
 
+  private DiceThrow() {}
+
   private static Random random = new Random();
 
   /**

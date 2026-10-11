@@ -30,19 +30,62 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for 30 Seconds of Java code library.
  */
+class BinarySearchIn2dArraySnippetTest {
 
-public class BinarySearchIn2dArraySnippetTest {
   /**
-  * Test for {@link BinarySearchIn2dArraySnippet #BinarySearchIn2dArraySnippet(int[][],int)}.
-  */
+   * Test for {@link BinarySearchIn2dArraySnippet#binarySearchIn2darr(int[][], int)}.
+   */
   @Test
-    void testBinarySearchIn2dArraySnippetTest() {
-    int[][] arr1 = {{3, 4, 7, 9}, {12, 24, 26, 29}, {34, 55, 88, 99}, {100, 189, 232, 234}};
-    int[] ans1 = {1, 2};
-    Assertions assertions  = null;
-    Assertions.assertArrayEquals(ans1, BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr1, 26));
-    int[][] arr2 = {{3, 4, 7, 9}, {12, 24, 26, 29}, {34, 55, 88, 99}, {100, 189, 232, 234}};
-    int[] ans2 = {-1, -1};
-    Assertions.assertArrayEquals(ans2, BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr2, 69));
+  void testBinarySearchIn2dArraySnippetTest() {
+    int[][] arr = {{3, 4, 7, 9}, {12, 24, 26, 29}, {34, 55, 88, 99}, {100, 189, 232, 234}};
+    Assertions.assertArrayEquals(new int[]{1, 2},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 26));
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(arr, 69));
+  }
+
+  /**
+   * Every value of a sorted matrix is found at the position where it really is.
+   */
+  @Test
+  void testEveryValueIsFoundAtItsOwnPosition() {
+    int[][] matrix = {{1, 4, 7, 11, 15}, {16, 19, 22, 26, 30}, {31, 34, 37, 41, 45}};
+    for (int row = 0; row < matrix.length; row++) {
+      for (int col = 0; col < matrix[row].length; col++) {
+        Assertions.assertArrayEquals(new int[]{row, col},
+            BinarySearchIn2dArraySnippet.binarySearchIn2darr(matrix, matrix[row][col]));
+      }
+    }
+  }
+
+  /**
+   * A value that is not in the matrix is reported as not found.
+   */
+  @Test
+  void testMissingValues() {
+    int[][] matrix = {{1, 4, 7, 11}, {12, 15, 18, 21}};
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(matrix, 0));
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(matrix, 9));
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(matrix, 22));
+  }
+
+  /**
+   * Matrices with a single row, a single column or a single element work as well.
+   */
+  @Test
+  void testSmallMatrices() {
+    Assertions.assertArrayEquals(new int[]{0, 2},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(new int[][]{{5, 6, 7}}, 7));
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(new int[][]{{5, 6, 7}}, 4));
+    Assertions.assertArrayEquals(new int[]{2, 0},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(new int[][]{{5}, {6}, {7}}, 7));
+    Assertions.assertArrayEquals(new int[]{-1, -1},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(new int[][]{{5}, {6}, {7}}, 8));
+    Assertions.assertArrayEquals(new int[]{0, 0},
+        BinarySearchIn2dArraySnippet.binarySearchIn2darr(new int[][]{{42}}, 42));
   }
 }

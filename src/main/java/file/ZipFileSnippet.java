@@ -36,6 +36,8 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipFileSnippet {
 
+  private ZipFileSnippet() {}
+
   /**
    * Zip single file.
    *

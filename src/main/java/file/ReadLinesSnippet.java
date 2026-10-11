@@ -34,6 +34,8 @@ import java.util.List;
  */
 public class ReadLinesSnippet {
 
+  private ReadLinesSnippet() {}
+
   /**
    * Read file as list of strings.
    *

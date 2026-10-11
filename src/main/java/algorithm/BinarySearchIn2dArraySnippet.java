@@ -29,65 +29,30 @@ package algorithm;
  */
 public class BinarySearchIn2dArraySnippet {
 
+  private BinarySearchIn2dArraySnippet() {}
+
   /**
-  * Search an item with binarySearch algorithm.
-  *
-  * @param matrix should be sorted
-  * @param target an item to search
-  * @return if location of item is found, otherwise return {-1,-1}
-  */
+   * Search an item with binarySearch algorithm.
+   *
+   * @param matrix a matrix whose rows are sorted and whose values increase row by row
+   * @param target an item to search
+   * @return if location of item is found, otherwise return {-1,-1}
+   */
   public static int[] binarySearchIn2darr(int[][] matrix, int target) {
-    int rows = matrix.length - 1;
-    int cols = matrix[0].length - 1;
+    int cols = matrix[0].length;
+    int low = 0;
+    int high = matrix.length * cols - 1;
 
-    if (rows == 1) {
-      return binarySearch(matrix, target, 0, 0, cols);
-    }
-
-    int rstart = 0;
-    int rend = rows;
-    int cmid = cols / 2;
-
-    while (rstart < rend - 1) {
-      int rmid = rstart + (rend - rstart) / 2;
-      if (matrix[rmid][cmid] > target) {
-        rend = rmid;
-      } else if (matrix[rmid][cmid] < target) {
-        rstart = rmid;
-      } else {
-        return new int[]{rmid, cmid};
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int value = matrix[mid / cols][mid % cols];
+      if (value == target) {
+        return new int[]{mid / cols, mid % cols};
       }
-    }
-    if (matrix[rstart][cmid] == target) {
-      return new int[]{rstart, cmid};
-    }
-    if (matrix[rend][cmid] == target) {
-      return new int[]{rend, cmid};
-    }
-    if (target <= matrix[rstart][cmid - 1]) {
-      return binarySearch(matrix, target, rstart, 0, cmid - 1);
-    }
-    if (target >= matrix[rstart][cmid + 1]) {
-      return binarySearch(matrix, target, rstart, cmid + 1, cols);
-    }
-    if (target <= matrix[rend][cmid - 1]) {
-      return binarySearch(matrix, target, rend, 0, cmid - 1);
-    }
-    if (target <= matrix[rend][cmid + 1]) {
-      return binarySearch(matrix, target, rend, cmid + 1, cols);
-    }
-    return new int[]{-1, -1};
-  }
-
-  static int[] binarySearch(int[][] matrix, int target, int row, int cstart, int cend) {
-    while (cstart <= cend) {
-      int cmid = cstart + (cend - cstart) / 2;
-      if (matrix[row][cmid] > target) {
-        cend = cmid - 1;
-      } else if (matrix[row][cmid] < target) {
-        cstart = cend + 1;
+      if (value < target) {
+        low = mid + 1;
       } else {
-        return new int[]{row, cmid};
+        high = mid - 1;
       }
     }
     return new int[]{-1, -1};

@@ -29,6 +29,8 @@ package algorithm;
  */
 public class LuhnModnSnippet {
 
+  private LuhnModnSnippet() {}
+
   private static final String CODE_POINTS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   /**

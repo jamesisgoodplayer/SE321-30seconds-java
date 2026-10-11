@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -44,7 +45,7 @@ class LuhnModnSnippetTest {
    */
   @ParameterizedTest
   @MethodSource("validInputProvider")
-  public void testGenerateCheckCharacter(String input) {
+  void testGenerateCheckCharacter(String input) {
     char checkCharacter = LuhnModnSnippet.generateCheckCharacter(input);
     String fullInput = input + checkCharacter;
     assertTrue(LuhnModnSnippet.validateCheckCharacter(fullInput),
@@ -53,7 +54,7 @@ class LuhnModnSnippetTest {
 
   @ParameterizedTest
   @MethodSource("invalidInputProvider")
-  public void testInvalidInputs(String input, Character checkCharacter, boolean throwException) {
+  void testInvalidInputs(String input, Character checkCharacter, boolean throwException) {
     if (throwException) {
       assertThrows(IllegalArgumentException.class, () ->
                       LuhnModnSnippet.generateCheckCharacter(input),
@@ -81,5 +82,14 @@ class LuhnModnSnippetTest {
             Arguments.of("", null, true),
             Arguments.of("WORLD", 'A', false)
     );
+  }
+
+  /**
+   * Tests the guards for characters and code points outside the alphabet.
+   */
+  @Test
+  void testInvalidCharacterAndCodePoint() {
+    assertThrows(IllegalArgumentException.class, () -> LuhnModnSnippet.codePointFromCharacter('*'));
+    assertThrows(IllegalArgumentException.class, () -> LuhnModnSnippet.characterFromCodePoint(36));
   }
 }

@@ -29,6 +29,8 @@ package algorithm;
  */
 public class CycleSortSnippet {
 
+  private CycleSortSnippet() {}
+
   /**
    * Sort an array with cycleSort algorithm.
    *

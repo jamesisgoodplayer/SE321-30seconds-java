@@ -123,4 +123,14 @@ class DammSnippetTest {
     boolean isValidInvalid = DammSnippet.validate(invalidNumber);
     assertFalse(isValidInvalid);
   }
+
+  /**
+   * Test for generating checksum with a long input.
+   */
+  @Test
+  void testGenerateCheckSumWithLong() {
+    long number = 572L;
+    long fullNumberWithChecksum = DammSnippet.generateCheckSum(number);
+    assertEquals(5724L, fullNumberWithChecksum);
+  }
 }

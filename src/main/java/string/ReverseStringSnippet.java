@@ -29,6 +29,8 @@ package string;
  */
 public class ReverseStringSnippet {
 
+  private ReverseStringSnippet() {}
+
   /**
    * Reverse string.
    *

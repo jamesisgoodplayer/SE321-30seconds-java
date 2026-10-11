@@ -32,6 +32,8 @@ import java.util.concurrent.Executors;
  */
 public class ThreadPool {
 
+  private ThreadPool() {}
+
   /**
    * Creates pool of threads. Where the pool is the size of the number of processors
    * available to the Java virtual machine.

@@ -29,7 +29,9 @@ package string;
  */
 
 public class KmpSubstringSearchSnippet {
- 
+
+  private KmpSubstringSearchSnippet() {}
+
   /**
    * Implements the Knuth-Morris-Pratt (KMP) algorithm to find the of a substring.
    *
@@ -38,7 +40,7 @@ public class KmpSubstringSearchSnippet {
    * @return The index of the first occurrence, or -1 if the pattern is not found.
    */
   public static int kmpSearch(String text, String pattern) {
-    if (pattern == null || pattern.length() == 0) {
+    if (pattern == null || pattern.isEmpty()) {
       return 0; // Trivial case: empty pattern
     }
  

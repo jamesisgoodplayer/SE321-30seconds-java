@@ -45,5 +45,6 @@ class KmpSubstringSearchSnippetTest {
     assertEquals(-1, KmpSubstringSearchSnippet.kmpSearch("abcd", "e"));
     assertEquals(0, KmpSubstringSearchSnippet.kmpSearch("aaaaa", "a"));
     assertEquals(2, KmpSubstringSearchSnippet.kmpSearch("abcdabcd", "cdab"));
+    assertEquals(0, KmpSubstringSearchSnippet.kmpSearch("abc", ""));
   }
 } 

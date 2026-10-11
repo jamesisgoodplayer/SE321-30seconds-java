@@ -44,5 +44,7 @@ class FormatBytesSnippetTest {
     assertEquals("1024.00 MB", FormatBytesSnippet.formatBytes(1024L * 1024 * 1024 - 1));
     assertEquals("Invalid Input", FormatBytesSnippet.formatBytes(-1024));
     assertEquals("8388608.00 TB", FormatBytesSnippet.formatBytes(Long.MAX_VALUE));
+    assertEquals("500 B", FormatBytesSnippet.formatBytes(500));
+    assertEquals("1.00 KB", FormatBytesSnippet.formatBytes(1024));
   }
 }

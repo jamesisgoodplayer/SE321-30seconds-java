@@ -42,5 +42,6 @@ class LeastCommonMultipleSnippetTest {
     assertEquals(10, LeastCommonMultipleSnippet.lcm(2, 5));
     assertEquals(72, LeastCommonMultipleSnippet.lcm(18, 24));
     assertEquals(7, LeastCommonMultipleSnippet.lcm(7, 7));
+    assertEquals(0, LeastCommonMultipleSnippet.lcm(5, 0));
   }
 }

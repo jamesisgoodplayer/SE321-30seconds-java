@@ -37,9 +37,7 @@ public class ArrayModeSnippet {
   /**
    * Private constructor to prevent instantiation.
    */
-  private ArrayModeSnippet() {
-    throw new IllegalStateException("Utility class");
-  }
+  private ArrayModeSnippet() {}
 
   /**
    * Returns the mode(s) of the array.

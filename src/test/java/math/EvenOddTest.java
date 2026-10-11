@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
 * Tests for 30 Seconds of Java code library.
 */
-public class EvenOddTest {
+class EvenOddTest {
   /**
   * Test for {@link EvenOdd #EvenOdd(int)}.
   */

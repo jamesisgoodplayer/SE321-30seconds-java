@@ -31,6 +31,8 @@ import java.util.regex.Pattern;
  */
 public class CompareVersionSnippet {
 
+  private CompareVersionSnippet() {}
+
   private static final Pattern EXTRACT_VERSION_PATTERN =
       Pattern.compile("(?<!\\w)\\d+(?:[.-]\\d+)*+");
 

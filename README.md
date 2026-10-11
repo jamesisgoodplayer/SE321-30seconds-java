@@ -14,67 +14,35 @@ Inspired by [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-c
 ### Binary Search In 2d Array
 
 ```java
+/**
+ * BinarySearchIn2dArraySnippet.
+ */
 public class BinarySearchIn2dArraySnippet {
 
+  private BinarySearchIn2dArraySnippet() {}
+
   /**
-  * Search an item with binarySearch algorithm.
-  *
-  * @param matrix should be sorted
-  * @param target an item to search
-  * @return if location of item is found, otherwise return {-1,-1}
-  */
+   * Search an item with binarySearch algorithm.
+   *
+   * @param matrix a matrix whose rows are sorted and whose values increase row by row
+   * @param target an item to search
+   * @return if location of item is found, otherwise return {-1,-1}
+   */
   public static int[] binarySearchIn2darr(int[][] matrix, int target) {
-    int rows = matrix.length - 1;
-    int cols = matrix[0].length - 1;
+    int cols = matrix[0].length;
+    int low = 0;
+    int high = matrix.length * cols - 1;
 
-    if (rows == 1) {
-      return binarySearch(matrix, target, 0, 0, cols);
-    }
-
-    int rstart = 0;
-    int rend = rows;
-    int cmid = cols / 2;
-
-    while (rstart < rend - 1) {
-      int rmid = rstart + (rend - rstart) / 2;
-      if (matrix[rmid][cmid] > target) {
-        rend = rmid;
-      } else if (matrix[rmid][cmid] < target) {
-        rstart = rmid;
-      } else {
-        return new int[]{rmid, cmid};
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int value = matrix[mid / cols][mid % cols];
+      if (value == target) {
+        return new int[]{mid / cols, mid % cols};
       }
-    }
-    if (matrix[rstart][cmid] == target) {
-      return new int[]{rstart, cmid};
-    }
-    if (matrix[rend][cmid] == target) {
-      return new int[]{rend, cmid};
-    }
-    if (target <= matrix[rstart][cmid - 1]) {
-      return binarySearch(matrix, target, rstart, 0, cmid - 1);
-    }
-    if (target >= matrix[rstart][cmid + 1]) {
-      return binarySearch(matrix, target, rstart, cmid + 1, cols);
-    }
-    if (target <= matrix[rend][cmid - 1]) {
-      return binarySearch(matrix, target, rend, 0, cmid - 1);
-    }
-    if (target <= matrix[rend][cmid + 1]) {
-      return binarySearch(matrix, target, rend, cmid + 1, cols);
-    }
-    return new int[]{-1, -1};
-  }
-
-  static int[] binarySearch(int[][] matrix, int target, int row, int cstart, int cend) {
-    while (cstart <= cend) {
-      int cmid = cstart + (cend - cstart) / 2;
-      if (matrix[row][cmid] > target) {
-        cend = cmid - 1;
-      } else if (matrix[row][cmid] < target) {
-        cstart = cend + 1;
+      if (value < target) {
+        low = mid + 1;
       } else {
-        return new int[]{row, cmid};
+        high = mid - 1;
       }
     }
     return new int[]{-1, -1};
@@ -86,6 +54,8 @@ public class BinarySearchIn2dArraySnippet {
 
 ```java
 public class BinarySearchSnippet {
+
+  private BinarySearchSnippet() {}
 
   /**
    * Search an item with binarySearch algorithm.
@@ -118,6 +88,8 @@ public class BinarySearchSnippet {
 ```java
 public class BubbleSortSnippet {
 
+  private BubbleSortSnippet() {}
+
   /**
    * Sort an array with bubbleSort algorithm.
    *
@@ -143,6 +115,8 @@ public class BubbleSortSnippet {
 
 ```java
 public class CountingSortSnippet {
+
+  private CountingSortSnippet() {}
 
   /**
    * Sort an array having zero or positive numbers with countingSort algorithm.
@@ -182,6 +156,8 @@ public class CountingSortSnippet {
 ```java
 public class CycleSortSnippet {
 
+  private CycleSortSnippet() {}
+
   /**
    * Sort an array with cycleSort algorithm.
    *
@@ -210,6 +186,8 @@ public class CycleSortSnippet {
 ```java
 public class InsertionSortSnippet {
 
+  private InsertionSortSnippet() {}
+
   /**
    * Sort an array with insertionSort algorithm.
    *
@@ -234,6 +212,8 @@ public class InsertionSortSnippet {
 
 ```java
 public class LinearSearchIn2dArraySnippet {
+
+  private LinearSearchIn2dArraySnippet() {}
 
   /**
    * Search an item with linearSearch algorithm.
@@ -262,6 +242,8 @@ public class LinearSearchIn2dArraySnippet {
 ```java
 public class LinearSearchSnippet {
 
+  private LinearSearchSnippet() {}
+
   /**
    * Search an item with linearSearch algorithm.
    *
@@ -284,6 +266,8 @@ public class LinearSearchSnippet {
 
 ```java
 public class LuhnModnSnippet {
+
+  private LuhnModnSnippet() {}
 
   private static final String CODE_POINTS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -375,6 +359,8 @@ public class LuhnModnSnippet {
 
 ```java
 public class MergeSortSnippet {
+
+  private MergeSortSnippet() {}
   /**
    * Sort an array with qmergesort algorithm.
    *
@@ -431,6 +417,8 @@ public class MergeSortSnippet {
 ```java
 public class QuickSortSnippet {
 
+  private QuickSortSnippet() {}
+
   /**
    * Sort an array with quicksort algorithm.
    *
@@ -473,6 +461,8 @@ public class QuickSortSnippet {
 ```java
 public class SelectionSortSnippet {
 
+  private SelectionSortSnippet() {}
+
   /**
    * Sort an array with selectionSort algorithm.
    *
@@ -502,6 +492,8 @@ public class SelectionSortSnippet {
 
 ```java
 public class SieveOfEratosthenesSnippet {
+
+  private SieveOfEratosthenesSnippet() {}
   /**
    * Search an item with binarySearch algorithm.
    *
@@ -515,7 +507,7 @@ public class SieveOfEratosthenesSnippet {
     }
 
     for (int i = 2; i * i <= n; i++) {
-      if (isPrime[i] == true) {
+      if (isPrime[i]) {
         for (int j = i * i; j <= n; j += i) {
           isPrime[j] = false;
         }
@@ -531,6 +523,8 @@ public class SieveOfEratosthenesSnippet {
 
 ```java
 public class VerhoeffSnippet {
+
+  private VerhoeffSnippet() {}
 
     private static final int[][] d = {
             {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
@@ -605,6 +599,8 @@ public class VerhoeffSnippet {
 ```java
 public class AllEqualSnippet {
 
+  private AllEqualSnippet() {}
+
   /**
    * Returns true if all elements in array are equal.
    *
@@ -622,6 +618,8 @@ public class AllEqualSnippet {
 
 ```java
 public class ArrayConcatSnippet {
+
+  private ArrayConcatSnippet() {}
 
   /**
    * Generic 2 array concatenation Credits: Joachim Sauer https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
@@ -644,6 +642,8 @@ public class ArrayConcatSnippet {
 ```java
 public class ArrayMeanSnippet {
 
+  private ArrayMeanSnippet() {}
+
   /**
    * Returns the mean of the integers in the array.
    *
@@ -660,6 +660,8 @@ public class ArrayMeanSnippet {
 
 ```java
 public class ArrayMedianSnippet {
+
+  private ArrayMedianSnippet() {}
 
   /**
    * Returns the median of the array.
@@ -679,6 +681,8 @@ public class ArrayMedianSnippet {
 
 ```java
 public class ArrayModeInPlaceSnippet {
+
+  private ArrayModeInPlaceSnippet() {}
 
   /**
   * Returns the mode of the array.
@@ -724,9 +728,7 @@ public class ArrayModeSnippet {
     /**
      * Private constructor to prevent instantiation.
      */
-    private ArrayModeSnippet() {
-        throw new IllegalStateException("Utility class");
-    }
+    private ArrayModeSnippet() {}
 
     /**
      * Returns the mode(s) of the array.
@@ -755,6 +757,8 @@ public class ArrayModeSnippet {
 ```java
 public class ArraySumSnippet {
 
+  private ArraySumSnippet() {}
+
   /**
    * Returns sum of the integers in the array.
    *
@@ -771,6 +775,8 @@ public class ArraySumSnippet {
 
 ```java
 public class FindMaxSnippet {
+
+  private FindMaxSnippet() {}
 
   /**
    * Returns the maximum integer from the array using reduction.
@@ -789,6 +795,8 @@ public class FindMaxSnippet {
 ```java
 public class FindMinSnippet {
 
+  private FindMinSnippet() {}
+
   /**
     * Returns the minimum integer from the array using reduction.
     *
@@ -805,6 +813,8 @@ public class FindMinSnippet {
 
 ```java
 public class MultiArrayConcatenationSnippet {
+
+  private MultiArrayConcatenationSnippet() {}
 
   /**
    * Generic N array concatenation Credits: Joachim Sauer https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
@@ -834,6 +844,8 @@ public class MultiArrayConcatenationSnippet {
 
 ```java
 public class ReverseArraySnippet {
+
+  private ReverseArraySnippet() {}
 
   /**
    * The function then reverses the elements of the array between the starting and ending
@@ -875,6 +887,8 @@ public class ReverseArraySnippet {
 ```java
 public class CreatingObjectSnippet {
 
+  private CreatingObjectSnippet() {}
+
   /**
    * Create object using reflection.
    *
@@ -908,6 +922,8 @@ public class CreatingObjectSnippet {
 ```java
 public class GetAllFieldNamesSnippet {
 
+  private GetAllFieldNamesSnippet() {}
+
   /**
    * Print all declared field names of the class or the interface the class extends.
    *
@@ -922,7 +938,7 @@ public class GetAllFieldNamesSnippet {
           Arrays.stream(currentClazz.getDeclaredFields())
               .filter(field -> !field.isSynthetic())
               .map(Field::getName)
-              .collect(Collectors.toList()));
+              .toList());
       currentClazz = currentClazz.getSuperclass();
     }
     return fields;
@@ -935,6 +951,8 @@ public class GetAllFieldNamesSnippet {
 ```java
 public class GetAllMethodsSnippet {
 
+  private GetAllMethodsSnippet() {}
+
   /**
    * Print all declared methods of the class.
    *
@@ -944,7 +962,7 @@ public class GetAllMethodsSnippet {
   public static List<String> getAllMethods(final Class<?> cls) {
     return Arrays.stream(cls.getDeclaredMethods())
         .map(Method::getName)
-        .collect(Collectors.toList());
+        .toList();
   }
 }
 ```
@@ -953,6 +971,8 @@ public class GetAllMethodsSnippet {
 
 ```java
 public class SafeCastSnippet {
+
+  private SafeCastSnippet() {}
 
   /**
    * Safely casts an object to the specified type.
@@ -974,6 +994,8 @@ public class SafeCastSnippet {
 ```java
 public class GetAllPublicFieldNamesSnippet {
 
+  private GetAllPublicFieldNamesSnippet() {}
+
   /**
    * Print all declared public field names of the class or the interface the class extends.
    *
@@ -983,7 +1005,7 @@ public class GetAllPublicFieldNamesSnippet {
   public static List<String> getAllPublicFieldNames(final Class<?> clazz) {
     return Arrays.stream(clazz.getFields())
         .map(Field::getName)
-        .collect(Collectors.toList());
+        .toList();
   }
 }
 ```
@@ -995,6 +1017,8 @@ public class GetAllPublicFieldNamesSnippet {
 ```java
 public class AddDaysToDateSnippet {
 
+  private AddDaysToDateSnippet() {}
+
   /**
    * Add days to given date.
    *
@@ -1003,13 +1027,11 @@ public class AddDaysToDateSnippet {
    * @return modified date
    */
   public static Date addDaysToDate(Date date, int noOfDays) {
-    if (date != null) {
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(date);
-      cal.add(Calendar.DAY_OF_MONTH, noOfDays);
-      return cal.getTime();
-    }
-    return null;
+    if (date == null) {
+return null;
+}
+var shifted = date.toInstant().atZone(ZoneId.systemDefault()).plusDays(noOfDays);
+return Date.from(shifted.toInstant());
   }
 
   /**
@@ -1029,6 +1051,8 @@ public class AddDaysToDateSnippet {
 
 ```java
 public class DateDifferenceSnippet {
+
+  private DateDifferenceSnippet() {}
 
   /**
   * This function calculates the number of years between two LocalDate objects.
@@ -1078,6 +1102,8 @@ public class DateDifferenceSnippet {
 ```java
 public class Base64DecodeSnippet {
 
+  private Base64DecodeSnippet() {}
+
   /**
    * Decodes a Base64 encoded string to the actual representation.
    *
@@ -1094,6 +1120,8 @@ public class Base64DecodeSnippet {
 
 ```java
 public class Base64EncodeSnippet {
+
+  private Base64EncodeSnippet() {}
   /**
    * Encodes the input string to a Base64 encoded string.
    *
@@ -1112,6 +1140,8 @@ public class Base64EncodeSnippet {
 
 ```java
 public class ListAllFilesSnippet {
+
+  private ListAllFilesSnippet() {}
 
   /**
    * Recursively list all the files in directory.
@@ -1141,6 +1171,8 @@ public class ListAllFilesSnippet {
 ```java
 public class ListDirectoriesSnippet {
 
+  private ListDirectoriesSnippet() {}
+
   /**
    * List directories.
    *
@@ -1157,6 +1189,8 @@ public class ListDirectoriesSnippet {
 
 ```java
 public class ListFilesInDirectorySnippet {
+
+  private ListFilesInDirectorySnippet() {}
 
   /**
    * List files in directory.
@@ -1175,6 +1209,8 @@ public class ListFilesInDirectorySnippet {
 ```java
 public class ReadLinesSnippet {
 
+  private ReadLinesSnippet() {}
+
   /**
    * Read file as list of strings.
    *
@@ -1192,6 +1228,8 @@ public class ReadLinesSnippet {
 
 ```java
 public class ZipDirectorySnippet {
+
+  private ZipDirectorySnippet() {}
 
   /**
    * Zip a complete directory.
@@ -1226,10 +1264,12 @@ public class ZipDirectorySnippet {
     if (fileToZip.isDirectory()) {
       if (fileName.endsWith("/")) {
         zipOut.putNextEntry(new ZipEntry(fileName)); // To be zipped next
+        zipOut.write(new byte[0]); // Directory entries carry no content
         zipOut.closeEntry();
       } else {
         // Add the "/" mark explicitly to preserve structure while unzipping action is performed
         zipOut.putNextEntry(new ZipEntry(fileName + "/"));
+        zipOut.write(new byte[0]); // Directory entries carry no content
         zipOut.closeEntry();
       }
       var children = fileToZip.listFiles();
@@ -1257,6 +1297,8 @@ public class ZipDirectorySnippet {
 
 ```java
 public class ZipFileSnippet {
+
+  private ZipFileSnippet() {}
 
   /**
    * Zip single file.
@@ -1288,6 +1330,8 @@ public class ZipFileSnippet {
 
 ```java
 public class ZipFilesSnippet {
+
+  private ZipFilesSnippet() {}
 
   /**
    * Zip multiples files.
@@ -1325,6 +1369,8 @@ public class ZipFilesSnippet {
 ```java
 public class InputStreamToStringSnippet {
 
+  private InputStreamToStringSnippet() {}
+
   /**
    * Convert InputStream to String.
    *
@@ -1343,6 +1389,8 @@ public class InputStreamToStringSnippet {
 ```java
 public class ReadFileSnippet {
 
+  private ReadFileSnippet() {}
+
   /**
    * Read file using stream and return list of string lines.
    *
@@ -1351,7 +1399,7 @@ public class ReadFileSnippet {
    */
   public static List<String> readFile(String fileName) throws FileNotFoundException {
     try (Stream<String> stream = new BufferedReader(new FileReader(fileName)).lines()) {
-      return stream.collect(Collectors.toList());
+      return stream.toList();
     }
   }
 }
@@ -1363,6 +1411,8 @@ public class ReadFileSnippet {
 
 ```java
 public class GetEnvOrDefaultSnippet {
+
+  private GetEnvOrDefaultSnippet() {}
 
   /**
    * Read an environment variable or return a default value when it is missing.
@@ -1383,6 +1433,8 @@ public class GetEnvOrDefaultSnippet {
 
 ```java
 public class DiceThrow {
+
+  private DiceThrow() {}
 
   private static Random random = new Random();
 
@@ -1433,6 +1485,8 @@ public class DiceThrow {
 ```java
 public class EloRatingSnippet {
 
+  private EloRatingSnippet() {}
+
   static final int BASE = 400; //Two types are popular - 400 and 480. We will choose 400 here
   static final int RATING_ADJUSTMENT_FACTOR = 32; //32 is the standard for Beginner Games
 
@@ -1451,9 +1505,8 @@ public class EloRatingSnippet {
     double logisticDiff = Math.pow(10, ratingDiff);
     double firstPlayerExpectedScore = 1.0 / (1 + logisticDiff);
     double firstPlayerActualScore = result;
-    double newRating = firstPlayerRating + RATING_ADJUSTMENT_FACTOR * (firstPlayerActualScore
-                       - firstPlayerExpectedScore);
-    return newRating;
+    return firstPlayerRating
++ RATING_ADJUSTMENT_FACTOR * (firstPlayerActualScore - firstPlayerExpectedScore);
   }
 }
 ```
@@ -1462,6 +1515,8 @@ public class EloRatingSnippet {
 
 ```java
 public class EvenOdd {
+
+  private EvenOdd() {}
 
   /**
    * Returns string denoting number is odd or even.
@@ -1483,6 +1538,8 @@ public class EvenOdd {
 
 ```java
 public class FactorialSnippet {
+
+  private FactorialSnippet() {}
 
   /**
    * Factorial. Works only for small numbers
@@ -1518,6 +1575,8 @@ public class FactorialSnippet {
 
 ```java
 public class FibonacciSnippet {
+
+  private FibonacciSnippet() {}
 
   /**
    * Recursive Fibonacci series. Works only for small n and is spectacularly inefficient
@@ -1574,6 +1633,8 @@ public class FibonacciSnippet {
 ```java
 public class GreatestCommonDivisorSnippet {
 
+  private GreatestCommonDivisorSnippet() {}
+
   /**
    * Greatest common divisor calculation.
    *
@@ -1594,6 +1655,8 @@ public class GreatestCommonDivisorSnippet {
 
 ```java
 public class HaversineFormulaSnippet {
+
+  private HaversineFormulaSnippet() {}
 
   // Radius of sphere on which the points are, in this case Earth.
   private static final double SPHERE_RADIUS_IN_KM = 6372.8;
@@ -1645,6 +1708,8 @@ public class HaversineFormulaSnippet {
 
 ```java
 public class LeastCommonMultipleSnippet {
+
+  private LeastCommonMultipleSnippet() {}
   /**
    * Least common multiple  calculation.
    *
@@ -1670,6 +1735,8 @@ public class LeastCommonMultipleSnippet {
 
 ```java
 public class LuhnSnippet {
+
+  private LuhnSnippet() {}
 
   /**
    * Calculates checksum for a given number with Luhn's algorithm. Works only on non-negative
@@ -1701,9 +1768,8 @@ public class LuhnSnippet {
 
       isOddPosition = !isOddPosition;
     }
-    final var checksumDigit = (10 - (sum % 10)) % 10;
     // Outermost modulus handles edge case `num = 0`.
-    return checksumDigit;
+return (10 - (sum % 10)) % 10;
   }
 }
 ```
@@ -1712,6 +1778,8 @@ public class LuhnSnippet {
 
 ```java
 public class NaturalNumberBinaryConversionSnippet {
+
+  private NaturalNumberBinaryConversionSnippet() {}
 
   /**
    * Convert natural number to binary string. Only supports positive integers.Throws exception
@@ -1759,6 +1827,8 @@ public class NaturalNumberBinaryConversionSnippet {
 ```java
 public class PerformLotterySnippet {
 
+  private PerformLotterySnippet() {}
+
   /**
    * Generate random lottery numbers.
    *
@@ -1781,6 +1851,8 @@ public class PerformLotterySnippet {
 
 ```java
 public class PrimeNumberSnippet {
+
+  private PrimeNumberSnippet() {}
 
   /**
    * Checks if given number is a prime number. Prime number is a number that is greater than 1 and
@@ -1841,8 +1913,7 @@ public class RandomNumber {
         return start.intValue()
                 + random.nextInt(end.intValue() - start.intValue() + 1);
       } else if (start instanceof Long && end instanceof Long) {
-        return start.longValue()
-                + (long) (random.nextDouble() * end.longValue() - start.longValue() + 1);
+        return random.nextLong(start.longValue(), end.longValue() + 1);
       } else if (start instanceof Float && end instanceof Float) {
         return start.floatValue()
                 + random.nextFloat() * (end.floatValue() - start.floatValue());
@@ -1861,6 +1932,8 @@ public class RandomNumber {
 
 ```java
 public class SquareRoot {
+
+  private SquareRoot() {}
 
   /**
    * Returns square root of a number.
@@ -1904,6 +1977,8 @@ public class SquareRoot {
 ```java
 public class CaptureScreenSnippet {
 
+  private CaptureScreenSnippet() {}
+
   /**
    * Capture screenshot and save it to PNG file. Credits: https://viralpatel.net/blogs/how-to-take-screen-shots-in-java-taking-screenshots-java/
    *
@@ -1928,19 +2003,23 @@ public class CaptureScreenSnippet {
 ```java
 public class HttpGetSnippet {
 
+  private HttpGetSnippet() {}
+
   /**
    * Performs HTTP GET request.
    *
    * @param uri the URI of the connection
    * @return response object
-   * @throws Exception i/o error, interruption error, etc
+   * @throws IOException if an I/O error occurs
+   * @throws InterruptedException if the operation is interrupted
    */
-  public static HttpResponse<String> httpGet(String uri) throws Exception {
-    var client = HttpClient.newHttpClient();
+  public static HttpResponse<String> httpGet(String uri) throws IOException, InterruptedException {
     var request = HttpRequest.newBuilder()
             .uri(URI.create(uri))
             .build();
-    return client.send(request, HttpResponse.BodyHandlers.ofString());
+    try (var client = HttpClient.newHttpClient()) {
+      return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
   }
 }
 ```
@@ -1950,16 +2029,18 @@ public class HttpGetSnippet {
 ```java
 public class HttpPostSnippet {
 
+  private HttpPostSnippet() {}
+
   /**
    * Performs HTTP POST request. Credits https://stackoverflow.com/questions/3324717/sending-http-post-request-in-java
    *
    * @param address   the URL of the connection in String format, like "http://www.google.com"
-   * @param arguments the body of the POST request, as a HashMap
+   * @param arguments the body of the POST request, as a Map
    * @return response object
    * @throws IOException          if an I/O error occurs
    * @throws InterruptedException if the operation is interrupted
    */
-  public static HttpResponse<String> httpPost(String address, HashMap<String, String> arguments)
+  public static HttpResponse<String> httpPost(String address, Map<String, String> arguments)
           throws IOException, InterruptedException {
     var sj = new StringJoiner("&");
     for (var entry : arguments.entrySet()) {
@@ -1974,7 +2055,9 @@ public class HttpPostSnippet {
             .POST(HttpRequest.BodyPublishers.ofByteArray(out))
             .build();
 
-    return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    try (var client = HttpClient.newHttpClient()) {
+      return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
   }
 }
 ```
@@ -1985,6 +2068,8 @@ public class HttpPostSnippet {
 
 ```java
 public class AnagramSnippet {
+
+  private AnagramSnippet() {}
 
   /**
    * Checks if two words are anagrams (contains same characters with same frequency in any order).
@@ -2018,6 +2103,8 @@ public class AnagramSnippet {
 ```java
 public class CommonLettersSnippet {
 
+  private CommonLettersSnippet() {}
+
   /**
    * Find Common Characters inside given two strings.
    *
@@ -2046,7 +2133,10 @@ public class CommonLettersSnippet {
 ```java
 public class CompareVersionSnippet {
 
-  private static final String EXTRACT_VERSION_REGEX = ".*?((?<!\\w)\\d+([.-]\\d+)*).*";
+  private CompareVersionSnippet() {}
+
+  private static final Pattern EXTRACT_VERSION_PATTERN =
+      Pattern.compile("(?<!\\w)\\d+(?:[.-]\\d+)*+");
 
   /**
    * Compares two version strings.
@@ -2074,7 +2164,8 @@ public class CompareVersionSnippet {
   }
 
   private static String[] getVersionComponents(String version) {
-    return version.replaceAll(EXTRACT_VERSION_REGEX, "$1").split("\\.");
+    var matcher = EXTRACT_VERSION_PATTERN.matcher(version);
+    return (matcher.find() ? matcher.group() : version).split("\\.");
   }
 }
 ```
@@ -2083,6 +2174,8 @@ public class CompareVersionSnippet {
 
 ```java
 public class DuplicateCharacterSnippet {
+
+  private DuplicateCharacterSnippet() {}
 
   /**
    * Remove Duplicate Characters from a string.
@@ -2106,6 +2199,8 @@ public class DuplicateCharacterSnippet {
 
 ```java
 public class LevenshteinDistanceSnippet {
+
+  private LevenshteinDistanceSnippet() {}
 
   /**
    * Find the Levenshtein distance between two words. https://en.wikipedia.org/wiki/Levenshtein_distance
@@ -2140,6 +2235,8 @@ public class LevenshteinDistanceSnippet {
 
 ```java
 public class LindenmayerSystemSnippet {
+
+  private LindenmayerSystemSnippet() {}
   /**
    * Generates an L-system string based on axiom, production rules, and a number of iterations.
    *
@@ -2179,6 +2276,8 @@ public class LindenmayerSystemSnippet {
 ```java
 public class MaxCharacterCountSnippet {
 
+  private MaxCharacterCountSnippet() {}
+
   /**
    * The maximum count of times a specific character appears in a string.
    *
@@ -2208,6 +2307,8 @@ public class MaxCharacterCountSnippet {
 ```java
 public class PalindromCheckSnippet {
 
+  private PalindromCheckSnippet() {}
+
   /**
    * Checks if given string is palindrome (same forward and backward). Skips non-letter characters
    * Credits: https://github.com/kousen/java_8_recipes
@@ -2216,18 +2317,21 @@ public class PalindromCheckSnippet {
    * @return true if palindrome
    */
   public static boolean isPalindrome(String s) {
-    for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
-      while (i < j && !Character.isLetter(s.charAt(i))) {
-        i++;
-      }
-      while (i < j && !Character.isLetter(s.charAt(j))) {
-        j--;
-      }
-
-      if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
-        return false;
-      }
-    }
+    var left = 0;
+var right = s.length() - 1;
+while (left < right) {
+if (!Character.isLetter(s.charAt(left))) {
+left++;
+} else if (!Character.isLetter(s.charAt(right))) {
+right--;
+} else if (Character.toLowerCase(s.charAt(left))
+!= Character.toLowerCase(s.charAt(right))) {
+return false;
+} else {
+left++;
+right--;
+}
+}
 
     return true;
   }
@@ -2238,6 +2342,8 @@ public class PalindromCheckSnippet {
 
 ```java
 public class ReverseStringSnippet {
+
+  private ReverseStringSnippet() {}
 
   /**
    * Reverse string.
@@ -2255,6 +2361,8 @@ public class ReverseStringSnippet {
 
 ```java
 public class StringToDateSnippet {
+
+  private StringToDateSnippet() {}
 
   /**
    * Convert string to date.
@@ -2276,6 +2384,8 @@ public class StringToDateSnippet {
 ```java
 public class KMPSubstringSearchSnippet {
 
+    private KMPSubstringSearchSnippet() {}
+
     /**
      * Implements the Knuth-Morris-Pratt (KMP) algorithm to find the index of the first occurrence of a substring in a given text.
      *
@@ -2284,7 +2394,7 @@ public class KMPSubstringSearchSnippet {
      * @return The index of the first occurrence of the pattern in the text, or -1 if the pattern is not found.
      */
     public static int kmpSearch(String text, String pattern) {
-        if (pattern == null || pattern.length() == 0) {
+        if (pattern == null || pattern.isEmpty()) {
             return 0; // Trivial case: empty pattern
         }
 
@@ -2347,6 +2457,8 @@ public class KMPSubstringSearchSnippet {
 ```java
 public class FormatBytesSnippet {
 
+  private FormatBytesSnippet() {}
+
     /**
      * Convert bytes into Human readable form.
      *
@@ -2385,6 +2497,8 @@ public class FormatBytesSnippet {
 ```java
 public class ThreadSnippet {
 
+  private ThreadSnippet() {}
+
   /**
    * Creates and returns a new thread with the task assigned to it (task will be performed parallel to the main thread).
    *
@@ -2399,6 +2513,8 @@ public class ThreadSnippet {
 
 ```java
 public class ThreadPool {
+
+  private ThreadPool() {}
 
   /**
    * <p>Creates pool of threads. Where the pool is the size of the number of processors
@@ -2420,9 +2536,7 @@ public class DammSnippet {
   /**
    * Private constructor to prevent instantiation of utility class.
    */
-  private DammSnippet() {
-    throw new UnsupportedOperationException("Utility class - instantiation is not allowed.");
-  }
+  private DammSnippet() {}
   private static final int[][] matrix = new int[][] {
           { 0, 3, 1, 7, 5, 9, 8, 6, 4, 2 },
           { 7, 0, 9, 2, 1, 5, 4, 8, 6, 3 },

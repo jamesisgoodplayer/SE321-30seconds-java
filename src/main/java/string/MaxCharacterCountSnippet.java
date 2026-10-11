@@ -29,6 +29,8 @@ package string;
  */
 public class MaxCharacterCountSnippet {
 
+  private MaxCharacterCountSnippet() {}
+
   /**
    * The maximum count of times a specific character appears in a string.
    *

@@ -25,7 +25,9 @@
 package math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -87,4 +89,12 @@ class LuhnSnippetTest {
     assertEquals(expectedChecksum, LuhnSnippet.calculateLuhnChecksum(num));
   }
 
+
+  /**
+   * Tests that a negative number is rejected.
+   */
+  @Test
+  void testNegativeNumber() {
+    assertThrows(IllegalArgumentException.class, () -> LuhnSnippet.calculateLuhnChecksum(-1));
+  }
 }

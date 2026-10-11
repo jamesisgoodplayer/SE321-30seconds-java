@@ -37,9 +37,7 @@ public class DammSnippet {
   /**
    * Private constructor to prevent instantiation of utility class.
    */
-  private DammSnippet() {
-    throw new UnsupportedOperationException("Utility class - instantiation is not allowed.");
-  }
+  private DammSnippet() {}
 
   /**
    * The quasigroup table used by the Damm algorithm.

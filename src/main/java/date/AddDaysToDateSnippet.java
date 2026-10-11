@@ -26,13 +26,14 @@ package date;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
  * AddDaysToDateSnippet.
  */
 public class AddDaysToDateSnippet {
+
+  private AddDaysToDateSnippet() {}
 
   /**
    * Add days to given date.
@@ -42,13 +43,11 @@ public class AddDaysToDateSnippet {
    * @return modified date
    */
   public static Date addDaysToDate(Date date, int noOfDays) {
-    if (date != null) {
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(date);
-      cal.add(Calendar.DAY_OF_MONTH, noOfDays);
-      return cal.getTime();
+    if (date == null) {
+      return null;
     }
-    return null;
+    var shifted = date.toInstant().atZone(ZoneId.systemDefault()).plusDays(noOfDays);
+    return Date.from(shifted.toInstant());
   }
 
   /**

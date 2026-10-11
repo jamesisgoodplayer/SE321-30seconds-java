@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 /**
 * Tests for 30 Seconds of Java code library.
@@ -40,6 +39,10 @@ class RandomNumberTest {
   */
   @RepeatedTest(100)
   void testGetRandomNumber() {
+    // Test for Byte range
+    Number byteResult = RandomNumber.getRandomNumber((byte) 2, (byte) 7);
+    assertTrue(byteResult instanceof Byte);
+    assertTrue((byteResult.byteValue() >= 2) && (byteResult.byteValue() <= 7));
     // Test for Short range
     Number shortResult = RandomNumber.getRandomNumber(
             (short) 2, (short) 7);

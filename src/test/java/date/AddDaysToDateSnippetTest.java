@@ -24,6 +24,8 @@
 
 package date;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +38,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for AddDaysToDateSnippet.
  */
-public class AddDaysToDateSnippetTest {
+class AddDaysToDateSnippetTest {
 
   /**
   * Test add days to date.
@@ -68,5 +70,14 @@ public class AddDaysToDateSnippetTest {
 
     LocalDate dateAfterTwoDaysActual = AddDaysToDateSnippet.addDaysToLocalDate(date, 2);
     Assertions.assertEquals(dateAfterTwoDaysExpected, dateAfterTwoDaysActual);
+  }
+
+  /**
+   * Tests that a null date is returned unchanged.
+   */
+  @Test
+  void testAddDaysToNullDate() {
+    assertNull(AddDaysToDateSnippet.addDaysToDate(null, 2));
+    assertNull(AddDaysToDateSnippet.addDaysToLocalDate(null, 2));
   }
 }
